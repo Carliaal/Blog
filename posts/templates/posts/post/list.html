@@ -1,0 +1,7 @@
+<ul>
+    {% for post in posts %}
+        <li>{{ post }}</li>
+    {% empty %}
+        <li> Post does not exist</li>
+    {% endfor %}
+</ul>
