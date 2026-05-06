@@ -16,13 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import render
+from shared.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls')),
-
     path('', include('accounts.urls')),
-
-    path('', lambda _: render(_, 'index.html'), name= 'index'),
+    path('', index, name='index'),
 ]
