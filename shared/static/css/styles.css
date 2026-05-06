@@ -475,3 +475,96 @@ h1::after {
 h1 {
   animation: neonFlicker 6s ease-in-out infinite;
 }
+
+/* ----------- LISTA DE POSTS ----------- */
+.post-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 750px;
+  margin: 30px auto 10px;
+}
+
+.post-list-header h1 {
+  margin: 0;
+  text-align: left;
+}
+
+.post-list-header h1::after {
+  display: none;
+}
+
+.post-list-actions {
+  width: 90%;
+  max-width: 750px;
+  margin: 0 auto 10px;
+}
+
+.post-list {
+  padding: 0;
+  margin: 0 auto;
+  max-width: 750px;
+  width: 90%;
+}
+
+.post-card {
+  background: var(--bg-card);
+  border-left: 3px solid var(--neon-pink);
+  padding: 20px 25px;
+  margin: 14px 0;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-shadow: var(--shadow-card);
+  transition: 0.2s;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.post-card:hover {
+  transform: translateX(5px);
+  border-left-width: 5px;
+  border-left-color: var(--neon-cyan);
+  box-shadow: 0 0 20px #00fff733, var(--shadow-card);
+}
+
+.post-card-title {
+  color: var(--neon-pink-bright);
+  text-shadow: 0 0 8px #ff2d7866;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.post-card-excerpt {
+  color: var(--text-dim);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.post-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.post-card-actions a {
+  margin: 0;
+  font-size: 0.75rem;
+  padding: 7px 16px;
+}
+
+.post-empty {
+  text-align: center;
+  margin: 80px auto;
+  color: var(--text-dim);
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.post-empty-icon {
+  font-size: 3rem;
+  color: var(--neon-pink);
+  text-shadow: var(--glow-pink);
+  margin-bottom: 16px;
+}

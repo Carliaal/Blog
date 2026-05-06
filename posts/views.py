@@ -32,7 +32,17 @@ def post_detail(request, post_slug: str):
 def add_post(request):
     if request.method == 'POST':
         if (form := AddPostForm(request.POST)).is_valid():
-            form.save()
+            post = form.save(commit=False)
+
+            base_slug = slugify(post.title)
+            slug = base_slug
+            counter = 1
+
+            while Post.objects.filter(slug=slug).exists():
+                slug = f'{base_slug}-{counter}'
+                counter += 1
+            post.slug = slug
+            post.save()
             return redirect('posts:post-list')
     else:
         form = AddPostForm()
@@ -50,3 +60,9 @@ def edit_post(request, post_slug: str):
     else:
         form = EditPostForm(instance=post)
     return render(request, 'posts/post/edit.html', {'post': post, 'form': form})
+
+@login_required
+def delete_post(request, post_slug: str):
+    post = Post.objects.get(slug=post_slug)
+    post.delete()
+    return redirect('posts:post-list')

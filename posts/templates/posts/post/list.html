@@ -1,13 +1,29 @@
 {% extends "basic.html" %}
 
 {% block content %}
-<ul>
-   <p> <a href="{% url 'posts:post-add' %}">añadir post</a>
+<h1>Posts</h1>
+<div class="post-list-actions">
+  <a href="{% url 'posts:post-add' %}" class="add">+ New post</a>
+</div>
+
+{% if posts %}
+  <ul class="post-list">
     {% for post in posts %}
-        <h3>{{ post }}</h3>
-        <p>Read more <a href="{% url 'posts:post-detail' post.slug %}">here</a></p>
-    {% empty %}
-        <h3> No posts yet</h3>
+      <li class="post-card">
+        <h3 class="post-card-title">{{ post.title }}</h3>
+        <p class="post-card-excerpt">{{ post.content|truncatechars:120 }}</p>
+        <div class="post-card-actions">
+          <a href="{% url 'posts:post-detail' post.slug %}" class="show">Read more</a>
+          <a href="{% url 'posts:post-edit' post.slug %}" class="edit">Edit</a>
+        </div>
+      </li>
     {% endfor %}
-</ul>
+  </ul>
+{% else %}
+  <div class="post-empty">
+    <p class="post-empty-icon">◈</p>
+    <p>No posts yet. Be the first to create one.</p>
+    <a href="{% url 'posts:post-add' %}" class="add">+ New post</a>
+  </div>
+{% endif %}
 {% endblock %}
