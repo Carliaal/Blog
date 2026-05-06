@@ -9,7 +9,7 @@ from .forms import AddPostForm, EditPostForm
 
 @login_required
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-created_at', '-id')
     return render(
         request,
         'posts/post/list.html',
