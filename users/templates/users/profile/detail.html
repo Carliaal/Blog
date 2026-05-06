@@ -1,0 +1,52 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<div class="profile-detail">
+
+  <div class="profile-detail-card">
+    <div class="profile-detail-header">
+      {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="{{ profile_user.username }}" class="profile-detail-avatar" />
+      {% else %}
+        <div class="profile-detail-avatar-placeholder">{{ profile_user.username|first|upper }}</div>
+      {% endif %}
+      <div class="profile-detail-meta">
+        <h1>{{ profile_user.username }}</h1>
+        {% if profile.bio %}
+          <p class="profile-detail-bio">{{ profile.bio }}</p>
+        {% else %}
+          <p class="profile-detail-bio profile-detail-bio--empty">No bio yet.</p>
+        {% endif %}
+        {% if is_own %}
+          <a href="{% url 'users:profile-edit' %}" class="edit">Edit profile</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <h2 class="profile-posts-title">Posts by {{ profile_user.username }}</h2>
+
+  {% if posts %}
+    <ul class="post-list profile-post-list">
+      {% for post in posts %}
+        <li class="post-card">
+          <h3 class="post-card-title">{{ post.title }}</h3>
+          <p class="post-card-excerpt">{{ post.content|truncatechars:120 }}</p>
+          <div class="post-card-actions">
+            <a href="{% url 'posts:post-detail' post.slug %}" class="show">Read more</a>
+            {% if is_own %}
+              <a href="{% url 'posts:post-edit' post.slug %}" class="edit">Edit</a>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="post-empty">
+      <p class="post-empty-icon">◈</p>
+      <p>No posts yet.</p>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

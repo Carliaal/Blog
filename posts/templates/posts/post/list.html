@@ -11,10 +11,13 @@
     {% for post in posts %}
       <li class="post-card">
         <h3 class="post-card-title">{{ post.title }}</h3>
+        {% if post.author %}<p class="post-card-author"><a href="{% url 'users:profile-detail' username=post.author.username %}" class="post-card-author-link">{{ post.author.username }}</a></p>{% endif %}
         <p class="post-card-excerpt">{{ post.content|truncatechars:120 }}</p>
         <div class="post-card-actions">
           <a href="{% url 'posts:post-detail' post.slug %}" class="show">Read more</a>
+        {% if is_author %}
           <a href="{% url 'posts:post-edit' post.slug %}" class="edit">Edit</a>
+        {% endif %}
         </div>
       </li>
     {% endfor %}

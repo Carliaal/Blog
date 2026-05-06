@@ -536,6 +536,15 @@ h1 {
   margin-bottom: 10px;
 }
 
+.post-card-author {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 6px #00fff755;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
 .post-card-excerpt {
   color: var(--text-dim);
   font-family: 'Share Tech Mono', monospace;
@@ -572,7 +581,7 @@ h1 {
 /* ----------- DETALLE DE POST ----------- */
 .post-detail {
   width: 90%;
-  max-width: 750px;
+  max-width: 950px;
   margin: 30px auto 60px;
 }
 
@@ -651,4 +660,114 @@ h1 {
   line-height: 1.9;
   color: var(--text-main);
   white-space: pre-wrap;
+}
+
+.post-author-link,
+.post-card-author-link {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  text-shadow: 0 0 6px #00fff755;
+  transition: 0.2s;
+}
+
+.post-author-link:hover,
+.post-card-author-link:hover {
+  color: var(--neon-pink-bright);
+  text-shadow: var(--glow-pink);
+}
+
+/* ----------- PERFIL DETAIL ----------- */
+.profile-detail {
+  width: 90%;
+  max-width: 800px;
+  margin: 30px auto 60px;
+}
+
+.profile-detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-top: 3px solid var(--neon-cyan);
+  box-shadow: var(--shadow-card), 0 0 30px #00fff71a;
+  padding: 30px 35px;
+  margin-bottom: 30px;
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+.profile-detail-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.profile-detail-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--neon-cyan);
+  box-shadow: var(--glow-cyan);
+  flex-shrink: 0;
+}
+
+.profile-detail-avatar-placeholder {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #1a0030;
+  border: 3px solid var(--neon-pink);
+  box-shadow: var(--glow-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--neon-pink-bright);
+  text-shadow: var(--glow-pink);
+  flex-shrink: 0;
+}
+
+.profile-detail-meta {
+  flex: 1;
+}
+
+.profile-detail-meta h1 {
+  text-align: left;
+  margin: 0 0 12px;
+  font-size: 1.8rem;
+  animation: none;
+}
+
+.profile-detail-meta h1::after {
+  display: none;
+}
+
+.profile-detail-bio {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  white-space: pre-wrap;
+}
+
+.profile-detail-bio--empty {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.profile-posts-title {
+  color: var(--neon-pink-bright);
+  text-shadow: var(--glow-pink);
+  margin-bottom: 10px;
+}
+
+.profile-post-list {
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.profile-post-list .post-card {
+  width: 100% !important;
+  max-width: 100% !important;
 }

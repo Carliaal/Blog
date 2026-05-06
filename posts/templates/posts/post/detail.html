@@ -10,17 +10,21 @@
   <div class="post-detail-card">
     <div class="post-detail-card-header">
       <h1>{{ post.title }}</h1>
-      <p class="post-detail-date">{{ post.created_at|date:"d M Y · H:i" }}</p>
+      <p class="post-detail-date">
+        {% if post.author %}<a href="{% url 'users:profile-detail' username=post.author.username %}" class="post-author-link">{{ post.author.username }}</a> · {% endif %}{{ post.created_at|date:"d M Y · H:i" }}
+      </p>
     </div>
     <div class="post-detail-divider"></div>
     <div class="post-detail-body">
       <p>{{ post.content }}</p>
     </div>
+    {% if is_author %}
     <div class="post-detail-divider"></div>
     <div class="post-detail-footer">
       <a href="{% url 'posts:post-edit' post.slug %}" class="edit">Edit</a>
       <a href="{% url 'posts:post-delete' post.slug %}" class="delete">Delete</a>
     </div>
+    {% endif %}
   </div>
 
 </div>
