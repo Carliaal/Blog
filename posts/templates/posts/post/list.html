@@ -1,0 +1,9 @@
+<ul>
+   <p> <a href="{% url 'posts:post-add' %}">añadir post</a>
+    {% for post in posts %}
+        <h3>{{ post }}</h3>
+        <p>Read more <a href="{% url 'posts:post-detail' post.slug %}">here</a></p>
+    {% empty %}
+        <h3> No posts yet</h3>
+    {% endfor %}
+</ul>

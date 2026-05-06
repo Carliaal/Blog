@@ -1,0 +1,8 @@
+<h1>Editando post "{{ post.title }}"</h1>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Guardar">
+</form>
+<p><a href="{% url 'posts:post-detail' post.slug %}">volver</a></p>

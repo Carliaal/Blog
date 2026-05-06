@@ -1,0 +1,8 @@
+<h1>Add post</h1>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Enviar">
+</form>
+<p><a href="{% url 'posts:post-list' %}">volver</a></p>
