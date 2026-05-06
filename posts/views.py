@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
 
@@ -6,7 +7,7 @@ from .models import Post
 from .forms import AddPostForm, EditPostForm
 
 
-
+@login_required
 def post_list(request):
     posts = Post.objects.all()
     return render(
@@ -15,6 +16,7 @@ def post_list(request):
         {'posts': posts},
     )
 
+@login_required
 def post_detail(request, post_slug: str):
     try:
         post = Post.objects.get(slug=post_slug)
@@ -26,6 +28,7 @@ def post_detail(request, post_slug: str):
         {'post': post},
     )
 
+@login_required
 def add_post(request):
     if request.method == 'POST':
         if (form := AddPostForm(request.POST)).is_valid():
@@ -35,6 +38,7 @@ def add_post(request):
         form = AddPostForm()
     return render(request, 'posts/post/add.html', {'form': form})
 
+@login_required
 def edit_post(request, post_slug: str):
     post = Post.objects.get(slug=post_slug)
     if request.method == 'POST':
