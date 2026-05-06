@@ -1,3 +1,6 @@
+{% extends "basic.html" %}
+
+{% block content %}
 <h1>Editando post "{{ post.title }}"</h1>
 
 <form method="post" novalidate>
@@ -6,3 +9,4 @@
     <input type="submit" value="Guardar">
 </form>
 <p><a href="{% url 'posts:post-detail' post.slug %}">volver</a></p>
+{% endblock %}

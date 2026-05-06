@@ -1,3 +1,6 @@
+{% extends "basic.html" %}
+
+{% block content %}
 <ul>
    <p> <a href="{% url 'posts:post-add' %}">añadir post</a>
     {% for post in posts %}
@@ -7,3 +10,4 @@
         <h3> No posts yet</h3>
     {% endfor %}
 </ul>
+{% endblock %}

@@ -1,0 +1,387 @@
+/* ----------- VARIABLES DE COLOR ----------- */
+:root {
+  --pink-light: #ffd6f2;
+  --pink: #ff8acb;
+  --pink-dark: #ff4fa8;
+  --white: #fff;
+  --gray-light: #f7f7f7;
+  --gray: #888;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ----------- RESET ----------- */
+body,
+h1,
+h2,
+ul,
+li,
+a,
+button {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--pink-light) ;
+  background-size: 100px;
+  background-attachment: fixed;
+  color: #333;
+  padding-bottom: 60px;
+}
+
+/* ----------- ENCABEZADO ----------- */
+header {
+  background: var(--pink);
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid var(--pink-dark);
+}
+
+header a {
+  color: var(--white);
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+header a:hover {
+  color: var(--pink-dark);
+  text-shadow: 0 0 5px white;
+}
+
+img:not(.profile-photo) {
+  max-width: 220px;
+  display: block;
+  margin: 20px auto;
+  border-radius: 20px;
+  border: 4px solid var(--pink);
+  box-shadow: var(--shadow);
+}
+
+.profile-link img,
+.logo img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+}
+
+.profile-link img:hover,
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+/* ----------- TITULOS ----------- */
+h1 {
+  text-align: center;
+  font-size: 2.6rem;
+  color: var(--pink-dark);
+  margin: 30px 0 15px;
+  position: relative;
+}
+
+h1::after {
+  content: "🐱";
+  position: absolute;
+  right: 48%;
+  top: -10px;
+  font-size: 1.8rem;
+}
+
+h2 {
+  color: var(--pink-dark);
+  margin-top: 20px;
+  padding: 10px 10px;
+}
+
+/* ----------- BOTONES ----------- */
+.show,
+.edit,
+.add,
+.cancel,
+.logout,
+.login,
+.delete,
+.signup,
+input[type="submit"],
+form a
+{
+  display: inline-block;
+  background: var(--pink);
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: var(--white) !important;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: 0.2s;
+  margin: 10px 5px;
+}
+
+.show:hover,
+.edit:hover,
+.add:hover,
+.cancel:hover,
+.delete:hover,
+.logout:hover,
+.login:hover,
+.signup:hover,
+input[type="submit"]:hover,
+form a:hover {
+  background: var(--pink-dark);
+  transform: translateY(-2px);
+}
+
+form input[type="file"] {
+  border: none;
+  background: var(--gray-light);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+
+/* colores específicos para botones */
+.show, form a, .signup {
+  background: #ff9800;
+  /* orange */
+  color: var(--white) !important;
+}
+
+.show:hover, form a:hover, .signup:hover {
+  background: #fb8c00;
+}
+
+.delete,
+.cancel,
+.logout {
+  background: #e53935;
+  /* red */
+  color: var(--white) !important;
+}
+
+.delete:hover,
+.cancel:hover,
+.logout:hover {
+  background: #c62828;
+}
+
+.username {
+  font-weight: bold;
+  color: var(--pink-dark);
+  text-decoration: none;
+}
+
+.username:hover {
+  text-decoration: underline;
+}
+
+.options{
+  margin: auto;
+  text-align: center;
+  padding: 20px 0;
+}
+
+
+
+
+/* ----------- FORMULARIOS ----------- */
+form {
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  background: var(--white);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--pink);
+  margin-top: 20px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid var(--pink);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--gray-light);
+  resize: none;
+}
+
+form button {
+  width: 100%;
+  margin-top: 15px;
+}
+
+/* ----------- MENSAJES ----------- */
+.messages {
+  background: var(--white);
+  padding: 15px;
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  list-style: none;
+  border-left: 6px solid var(--pink-dark);
+}
+
+.messages li {
+  margin: 5px 0;
+}
+
+/* ----------- PERFIL ----------- */
+textarea#bio {
+  min-height: 120px;
+  resize: none;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--pink);
+  background: var(--gray-light);
+  font-size: 1rem;
+  margin-bottom: 20px;
+  margin: 10px;
+  width: calc(100% - 40px);
+}
+
+
+
+.profile-photo {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--pink);
+  box-shadow: var(--shadow);
+  margin-left: 8px;
+  vertical-align: middle;
+
+}
+
+.user-image {
+  width: 100%;
+  display: flex;
+}
+
+
+.user-image a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+
+
+/* ----------- LISTA DE ECHOS ----------- */
+ul {
+  list-style: none;
+  padding: 10px;
+}
+
+ul li {
+  background: var(--white);
+  padding: 15px;
+  margin: 10px auto;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 650px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--pink);
+  transition: 0.2s;
+}
+
+ul li:hover {
+  transform: translateX(5px);
+  border-left-width: 7px;
+}
+
+.echo {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  border: #ff4fa8 2px solid;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--gray-light);
+  margin: 10px
+}
+
+.wave {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  border: #ff4fa8 2px solid;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--pink-light);
+  margin: 10px
+}
+
+.echos {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60%;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-info {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  background: var(--white);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border: 2px solid var(--pink);
+  margin-bottom: 20px;
+}
+
+/* ----------- ANIMACIONES ----------- */
+@keyframes floatingCat {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+h1::after {
+  animation: floatingCat 2s ease-in-out infinite;
+}
