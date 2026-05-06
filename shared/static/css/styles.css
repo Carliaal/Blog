@@ -139,7 +139,7 @@ h1 {
   text-shadow: var(--glow-pink);
   text-transform: uppercase;
   letter-spacing: 4px;
-  margin: 35px 0 20px;
+  margin: 60px 0 20px;
   position: relative;
 }
 
@@ -281,7 +281,7 @@ form {
   border-radius: 2px;
   border: 1px solid var(--neon-pink);
   box-shadow: var(--shadow-card);
-  margin-top: 20px;
+  margin-top: 60px;
   clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
 }
 
@@ -498,7 +498,7 @@ h1 {
 .post-list-actions {
   width: 90%;
   max-width: 750px;
-  margin: 0 auto 10px;
+  margin: 50px auto 10px;
 }
 
 .post-list {
@@ -582,7 +582,7 @@ h1 {
 .post-detail {
   width: 90%;
   max-width: 950px;
-  margin: 30px auto 60px;
+  margin: 60px auto 60px;
 }
 
 .post-detail-topbar {
@@ -680,7 +680,7 @@ h1 {
 .profile-detail {
   width: 90%;
   max-width: 800px;
-  margin: 30px auto 60px;
+  margin: 60px auto 60px;
 }
 
 .profile-detail-card {
