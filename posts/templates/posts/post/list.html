@@ -1,7 +1,8 @@
 <ul>
     {% for post in posts %}
-        <li>{{ post }}</li>
+        <h3>{{ post }}</h3>
+        <p>Read more <a href="{% url 'posts:post-detail' post.slug %}">here</a></p>
     {% empty %}
-        <li> Post does not exist</li>
+        <h3> No posts yet</h3>
     {% endfor %}
 </ul>
