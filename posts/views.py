@@ -6,7 +6,7 @@ from django.utils.text import slugify
 from comments.models import Comment
 from .models import Post
 from .forms import AddPostForm, EditPostForm
-from shared.decorators import author_required
+from shared.decorators import author_required, object_required
 
 
 @login_required
@@ -16,11 +16,8 @@ def post_list(request):
 
 
 @login_required
-def post_detail(request, post_slug: str):
-    try:
-        post = Post.objects.get(slug=post_slug)
-    except Post.DoesNotExist:
-        return HttpResponse(f'Post with slug "{post_slug}" does not exist!')
+@object_required(Post, slug_kwarg='post_slug')
+def post_detail(request, post: str):
     comments = Comment.objects.filter(post=post).order_by('id')
     return render(request, 'posts/post/detail.html', {
         'post': post,
@@ -50,7 +47,7 @@ def add_post(request):
 
 
 @login_required
-@author_required
+@object_required(Post, slug_kwarg='post_slug', author_check=True)
 def edit_post(request, post: Post):
     if request.method == 'POST':
         if (form := EditPostForm(request.POST, instance=post)).is_valid():
@@ -64,7 +61,7 @@ def edit_post(request, post: Post):
 
 
 @login_required
-@author_required
-def delete_post(request, post: Post):
+@object_required(Post, slug_kwarg='post_slug', author_check=True)
+def delete_post(request, post):
     post.delete()
     return redirect('posts:post-list')

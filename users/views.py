@@ -7,6 +7,7 @@ from posts.models import Post
 from comments.models import Comment
 from .forms import EditProfileForm
 from .models import Profile
+from shared.decorators import object_required
 
 User = get_user_model()
 
@@ -14,12 +15,8 @@ def users_list(request):
     users = User.objects.all().order_by('username')
     return render(request, 'users/profile/list.html', {'users': users})
 
-
-def profile_detail(request, username):
-    try:
-        profile_user = User.objects.get(username=username)
-    except User.DoesNotExist:
-        raise Http404
+@object_required(User, slug_kwarg='username', kwarg_name='profile_user')
+def profile_detail(request, profile_user): 
     profile, _ = Profile.objects.get_or_create(user=profile_user)
     posts = Post.objects.filter(author=profile_user).order_by('-created_at', '-id')
     comments = Comment.objects.filter(author=profile_user).order_by('-created_at', '-id')

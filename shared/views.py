@@ -5,3 +5,7 @@ def index(request):
     if request.user.is_authenticated:
         return redirect('posts:post-list')
     return render(request, 'index.html')
+
+def custom_404(request, exception):
+    context = {}
+    return render(request, '404.html', context, status=404)
