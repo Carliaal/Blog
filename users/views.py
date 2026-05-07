@@ -4,6 +4,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 
 from posts.models import Post
+from comments.models import Comment
 from .forms import EditProfileForm
 from .models import Profile
 
@@ -21,10 +22,12 @@ def profile_detail(request, username):
         raise Http404
     profile, _ = Profile.objects.get_or_create(user=profile_user)
     posts = Post.objects.filter(author=profile_user).order_by('-created_at', '-id')
+    comments = Comment.objects.filter(author=profile_user).order_by('-created_at', '-id')
     return render(request, 'users/profile/detail.html', {
         'profile_user': profile_user,
         'profile': profile,
         'posts': posts,
+        'comments': comments,
         'is_own': request.user == profile_user,
     })
 

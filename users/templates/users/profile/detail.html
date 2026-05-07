@@ -12,6 +12,7 @@
       {% endif %}
       <div class="profile-detail-meta">
         <h1>{{ profile_user.username }}</h1>
+        <p> Account created at:  {{ profile.created_at}}</p>
         {% if profile.bio %}
           <p class="profile-detail-bio">{{ profile.bio }}</p>
         {% else %}
@@ -24,7 +25,7 @@
     </div>
   </div>
 
-  <h2 class="profile-posts-title">Posts by {{ profile_user.username }}</h2>
+  <h2 class="profile-posts-title">Posts by {{ profile_user.username }} ({{ posts.count}}) </h2>
 
   {% if posts %}
     <ul class="post-list profile-post-list">
@@ -45,6 +46,33 @@
     <div class="post-empty">
       <p class="post-empty-icon">◈</p>
       <p>No posts yet.</p>
+    </div>
+  {% endif %}
+
+  <h2 class="profile-posts-title">Comments by {{ profile_user.username }} ({{ comments.count }})</h2>
+
+  {% if comments %}
+    <ul class="comments-list profile-post-list">
+      {% for comment in comments %}
+        <li class="comment-card {% if comment.parent %}comment-reply{% endif %}">
+          {% if comment.parent %}
+            <p class="comment-replying-to">↳ Replying to {{ comment.parent.alias }}</p>
+          {% endif %}
+          <p class="comment-alias">{{ comment.alias }}</p>
+          <p class="comment-content">{{ comment.content|truncatechars:120 }}</p>
+          <p class="post-card-author">
+            On: <a href="{% url 'posts:post-detail' comment.post.slug %}" class="post-card-author-link">{{ comment.post.title }}</a>
+          </p>
+          <div class="post-card-actions">
+            <a href="{% url 'comments:detail' post_slug=comment.post.slug comment_id=comment.id %}" class="show">Read more</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="post-empty">
+      <p class="post-empty-icon">◈</p>
+      <p>No comments yet.</p>
     </div>
   {% endif %}
 
