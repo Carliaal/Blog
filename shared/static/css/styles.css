@@ -746,6 +746,50 @@ h1 {
   white-space: pre-wrap;
 }
 
+.comment-reply {
+  border-left-color: var(--neon-cyan);
+  margin-left: 30px !important;
+  position: relative;
+}
+
+.comment-reply::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--neon-cyan), transparent);
+  opacity: 0.3;
+}
+
+.comment-replying-to {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 6px #00fff755;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.reply-context {
+  background: #160028;
+  border-left: 3px solid var(--neon-purple);
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.reply-context .comment-alias {
+  margin-bottom: 4px;
+}
+
+.reply-context .comment-content {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
 .comments-list-link {
   color: inherit;
   text-decoration: none;

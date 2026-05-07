@@ -37,7 +37,10 @@
     {% if comments %}
       <ul class="comments-list">
         {% for comment in comments %}
-          <li class="comment-card">
+          <li class="comment-card {% if comment.parent %}comment-reply{% endif %}">
+            {% if comment.parent %}
+              <p class="comment-replying-to">↳ Replying to {{ comment.parent.alias }}</p>
+            {% endif %}
             <p class="comment-alias">{{ comment.alias }}</p>
             <p class="comment-content">{{ comment.content|truncatechars:160 }}</p>
             <a href="{% url 'comments:detail' post_slug=post.slug comment_id=comment.id %}" class="show">Read more</a>

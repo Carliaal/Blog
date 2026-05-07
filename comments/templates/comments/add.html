@@ -1,10 +1,17 @@
 {% extends "basic.html" %}
 
 {% block content %}
-<h1>Add comment</h1>
+<h1>{% if parent %}Reply{% else %}Add comment{% endif %}</h1>
 
 <form method="post">
   {% csrf_token %}
+  {% if parent %}
+    <input type="hidden" name="parent_id" value="{{ parent.id }}">
+    <div class="reply-context">
+      <p class="comment-alias">Replying to {{ parent.alias }}</p>
+      <p class="comment-content">{{ parent.content|truncatechars:120 }}</p>
+    </div>
+  {% endif %}
   {% for field in form %}
     <div class="form-group">
       <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -19,6 +26,6 @@
     </div>
   {% endfor %}
   <input type="submit" value="Send" />
-  <a href="{% url 'posts:post-detail' post.slug %}" class="cancel">Cancel</a>
+  <a href="{% url 'posts:post-detail' post_slug=post.slug %}" class="cancel">Cancel</a>
 </form>
 {% endblock %}
