@@ -253,6 +253,23 @@ form input[type="file"] {
   box-shadow: 0 0 20px #ff2244aa;
 }
 
+.nav-link {
+  font-weight: 700;
+  color: var(--neon-cyan) !important;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  text-shadow: var(--glow-cyan);
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--neon-pink-bright) !important;
+  text-shadow: var(--glow-pink);
+  letter-spacing: 2px;
+}
+
 .username {
   font-weight: 700;
   color: var(--neon-pink-bright);
@@ -727,6 +744,17 @@ h1 {
   color: var(--text-main);
   line-height: 1.6;
   white-space: pre-wrap;
+}
+
+.comments-list-link {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.comments-list-link:hover {
+  color: var(--neon-cyan);
+  text-shadow: var(--glow-cyan);
 }
 
 .comments-empty {

@@ -2,6 +2,10 @@
 <header>
   <div class="header-left">
     <a href="{% url 'index' %}" class="logo"><img src="{% static 'logo.png' %}" alt="Logo tribu" /></a>
+    <a href="{% url 'posts:post-list' %}" class="nav-link">Posts</a>
+    <a href="{% url 'users:users-list' %}" class="nav-link">Users</a>
+
+
   </div>
 
   <div class="header-right">

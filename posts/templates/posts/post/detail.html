@@ -30,7 +30,7 @@
 
   <div class="comments-section">
     <div class="comments-header">
-      <h2>Comments ({{ comments|length }})</h2>
+      <h2><a href="{% url 'comments:comments-list' post_slug=post.slug %}" class="comments-list-link">Comments ({{ comments|length }})</a></h2>
       <a href="{% url 'comments:add-comment' post_slug=post.slug %}" class="add">+ Add comment</a>
     </div>
 

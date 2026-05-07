@@ -1,0 +1,28 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<h1>Users</h1>
+
+{% if users %}
+  <ul class="post-list">
+    {% for user in users %}
+      <li class="post-card">
+        <h3 class="post-card-title">
+          <a href="{% url 'users:profile-detail' username=user.username %}" class="post-card-author-link">{{ user.username }}</a>
+        </h3>
+        {% if user.profile.bio %}
+          <p class="post-card-excerpt">{{ user.profile.bio|truncatechars:120 }}</p>
+        {% endif %}
+        <div class="post-card-actions">
+          <a href="{% url 'users:profile-detail' username=user.username %}" class="show">View profile</a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <div class="post-empty">
+    <p class="post-empty-icon">◈</p>
+    <p>No users yet.</p>
+  </div>
+{% endif %}
+{% endblock %}

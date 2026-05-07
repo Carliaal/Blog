@@ -6,6 +6,12 @@ from posts.models import Post
 from .forms import AddCommmentForm
 from .models import Comment
 
+@login_required
+def comments_list(request, post_slug):
+    post = get_object_or_404(Post, slug=post_slug)
+    comments = Comment.objects.filter(post=post).order_by('id')
+    return render(request, 'comments/list.html', {'comments': comments, 'post': post})
+
 
 @login_required
 def add_comment(request, post_slug):
@@ -21,7 +27,7 @@ def add_comment(request, post_slug):
         form = AddCommmentForm()
     return render(request, 'comments/add.html', {'form': form, 'post': post})
 
-
+@login_required
 def comment_detail(request, post_slug, comment_id):
     post = get_object_or_404(Post, slug=post_slug)
     comment = get_object_or_404(Comment, id=comment_id, post=post)
@@ -30,7 +36,6 @@ def comment_detail(request, post_slug, comment_id):
         'post': post,
         'is_author': comment.author == request.user,
     })
-
 
 @login_required
 def delete_comment(request, post_slug, comment_id):
