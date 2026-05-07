@@ -662,6 +662,81 @@ h1 {
   white-space: pre-wrap;
 }
 
+/* ----------- COMENTARIOS ----------- */
+.comments-section {
+  margin-top: 30px;
+}
+
+.comments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.comments-header h2 {
+  margin: 0;
+  text-align: left;
+}
+
+.comments-header a {
+  margin: 0;
+  font-size: 0.75rem;
+  padding: 7px 16px;
+}
+
+.comments-list {
+  padding: 0;
+  width: 100%;
+  margin: 0;
+}
+
+.comments-list li {
+  width: 100%;
+  max-width: 100%;
+  margin: 10px 0;
+}
+
+.comment-card {
+  background: var(--bg-card);
+  border-left: 3px solid var(--neon-purple);
+  padding: 16px 20px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+.comment-card:hover {
+  border-left-color: var(--neon-cyan);
+}
+
+.comment-alias {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--neon-purple);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.comment-content {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.comments-empty {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 30px 0;
+  font-size: 0.9rem;
+}
+
 .post-author-link,
 .post-card-author-link {
   color: var(--neon-cyan);

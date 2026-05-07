@@ -1,0 +1,32 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<div class="post-detail">
+
+  <div class="post-detail-topbar">
+    <a href="{% url 'posts:post-detail' post_slug=post.slug %}" class="show">← Back to post</a>
+  </div>
+
+  <div class="post-detail-card">
+    <div class="post-detail-card-header">
+      <p class="post-card-author">{{ comment.alias }}</p>
+      {% if comment.author %}
+        <p class="post-detail-date">
+          <a href="{% url 'users:profile-detail' username=comment.author.username %}" class="post-author-link">{{ comment.author.username }}</a>
+        </p>
+      {% endif %}
+    </div>
+    <div class="post-detail-divider"></div>
+    <div class="post-detail-body">
+      <p>{{ comment.content }}</p>
+    </div>
+    {% if is_author %}
+    <div class="post-detail-divider"></div>
+    <div class="post-detail-footer">
+      <a href="{% url 'comments:delete-comment' post_slug=post.slug comment_id=comment.id %}" class="delete">Delete</a>
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

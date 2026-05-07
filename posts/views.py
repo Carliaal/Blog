@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
 
+from comments.models import Comment
 from .models import Post
 from .forms import AddPostForm, EditPostForm
 from shared.decorators import author_required
@@ -20,9 +21,11 @@ def post_detail(request, post_slug: str):
         post = Post.objects.get(slug=post_slug)
     except Post.DoesNotExist:
         return HttpResponse(f'Post with slug "{post_slug}" does not exist!')
+    comments = Comment.objects.filter(post=post).order_by('id')
     return render(request, 'posts/post/detail.html', {
         'post': post,
         'is_author': post.author == request.user,
+        'comments': comments,
     })
 
 
