@@ -23,6 +23,7 @@ from shared.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls')),
+    path('posts/', include('comments.urls')),
     path('users/', include('users.urls')),
     path('', include('accounts.urls')),
     path('', index, name='index'),

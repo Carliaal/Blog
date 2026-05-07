@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shared.apps.SharedConfig',
     'accounts.apps.AccountsConfig',
     'users.apps.UsersConfig',
+    'comments.apps.CommentsConfig',
 ]
 
 MIDDLEWARE = [

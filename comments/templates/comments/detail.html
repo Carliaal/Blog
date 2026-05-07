@@ -1,0 +1,51 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<div class="post-detail">
+
+  <div class="post-detail-topbar">
+    <a href="{% url 'posts:post-detail' post_slug=post.slug %}" class="show">← Back to post</a>
+  </div>
+
+  <div class="post-detail-card">
+    <div class="post-detail-card-header">
+      <p class="post-card-author">{{ comment.alias }}</p>
+      {% if comment.author %}
+        <p class="post-detail-date">
+          <a href="{% url 'users:profile-detail' username=comment.author.username %}" class="post-author-link">{{ comment.author.username }}</a>
+        </p>
+      {% endif %}
+    </div>
+    <div class="post-detail-divider"></div>
+    <div class="post-detail-body">
+      <p>{{ comment.content }}</p>
+    </div>
+    <div class="post-detail-divider"></div>
+    <div class="post-detail-footer">
+      <a href="{% url 'comments:add-comment' post_slug=post.slug %}?parent_id={{ comment.id }}" class="add">Reply</a>
+      {% if is_author %}
+        <a href="{% url 'comments:delete-comment' post_slug=post.slug comment_id=comment.id %}" class="delete">Delete</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if replies %}
+  <div class="comments-section">
+    <div class="comments-header">
+      <h2>Replies ({{ replies|length }})</h2>
+    </div>
+    <ul class="comments-list">
+      {% for reply in replies %}
+        <li class="comment-card comment-reply">
+          <p class="comment-replying-to">↳ Replying to {{ comment.alias }}</p>
+          <p class="comment-alias">{{ reply.alias }}</p>
+          <p class="comment-content">{{ reply.content|truncatechars:160 }}</p>
+          <a href="{% url 'comments:detail' post_slug=post.slug comment_id=reply.id %}" class="show">Read more</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}

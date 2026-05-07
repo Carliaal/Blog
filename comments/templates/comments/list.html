@@ -1,0 +1,31 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<div class="post-detail">
+
+  <div class="post-detail-topbar">
+    <a href="{% url 'posts:post-detail' post_slug=post.slug %}" class="show">← Back to post</a>
+  </div>
+
+  <h2>Comments on "{{ post.title }}"</h2>
+
+  {% if comments %}
+    <ul class="comments-list">
+      {% for comment in comments %}
+        <li class="comment-card">
+          <p class="comment-alias">{{ comment.alias }}</p>
+          <p class="comment-content">{{ comment.content|truncatechars:160 }}</p>
+          <a href="{% url 'comments:detail' post_slug=post.slug comment_id=comment.id %}" class="show">Read more</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="post-empty">
+      <p class="post-empty-icon">◈</p>
+      <p>No comments yet.</p>
+      <a href="{% url 'comments:add-comment' post_slug=post.slug %}" class="add">+ Add comment</a>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

@@ -9,6 +9,10 @@ from .models import Profile
 
 User = get_user_model()
 
+def users_list(request):
+    users = User.objects.all().order_by('username')
+    return render(request, 'users/profile/list.html', {'users': users})
+
 
 def profile_detail(request, username):
     try:

@@ -18,12 +18,37 @@
     <div class="post-detail-body">
       <p>{{ post.content }}</p>
     </div>
+    
     {% if is_author %}
     <div class="post-detail-divider"></div>
     <div class="post-detail-footer">
       <a href="{% url 'posts:post-edit' post.slug %}" class="edit">Edit</a>
       <a href="{% url 'posts:post-delete' post.slug %}" class="delete">Delete</a>
     </div>
+    {% endif %}
+  </div>
+
+  <div class="comments-section">
+    <div class="comments-header">
+      <h2><a href="{% url 'comments:comments-list' post_slug=post.slug %}" class="comments-list-link">Comments ({{ comments|length }})</a></h2>
+      <a href="{% url 'comments:add-comment' post_slug=post.slug %}" class="add">+ Add comment</a>
+    </div>
+
+    {% if comments %}
+      <ul class="comments-list">
+        {% for comment in comments %}
+          <li class="comment-card {% if comment.parent %}comment-reply{% endif %}">
+            {% if comment.parent %}
+              <p class="comment-replying-to">↳ Replying to {{ comment.parent.alias }}</p>
+            {% endif %}
+            <p class="comment-alias">{{ comment.alias }}</p>
+            <p class="comment-content">{{ comment.content|truncatechars:160 }}</p>
+            <a href="{% url 'comments:detail' post_slug=post.slug comment_id=comment.id %}" class="show">Read more</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="comments-empty">No comments yet. Be the first!</p>
     {% endif %}
   </div>
 
